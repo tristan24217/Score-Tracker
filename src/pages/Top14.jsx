@@ -2,9 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import Table from "../components/Table";
 import Matches from "../components/Matches";
+import TeamCard from "../components/TeamCard";
 
 const Top14 = () => {
-  const [currentTab, setCurrentTab] = useState("Matches")
+  const [currentTab, setCurrentTab] = useState("Teams")
   const [data, setData] = useState(null);
   const clubs = ["Clermont", "Bayonne", "Castres", "Lyon", "Montpellier", "Oyonnax", "Racing-92", "Toulon", "Pau", "Paris", "La-Rochelle", "Toulouse", "Bordeaux-begles", "Perpignan"]
 
@@ -43,10 +44,7 @@ const Top14 = () => {
         {currentTab === "Teams" && (
           <div className="grid grid-cols-5 gap-4 p-5">
             {clubs.map((club, index) => (
-              <div className="h-44 container border cursor-pointer flex flex-col justify-center items-center p-3 bg-gray-700 hover:bg-gray-800" key={index}>
-                <img className="w-24 h-lg" src={`https://cdn.lnr.fr/club/${club}/photo/logo.bf3916f6c3950e6f8db29a8382a5f08159c542ad`}/>
-                <span>{data[index].name}</span>
-              </div>
+              <TeamCard key={index} name={data[index].name} index={index} image={`https://cdn.lnr.fr/club/${club}/photo/logo.bf3916f6c3950e6f8db29a8382a5f08159c542ad`} id={''} />
             ))}
           </div>
         )}
